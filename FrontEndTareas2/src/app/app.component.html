@@ -1,0 +1,115 @@
+<div class="container mt-5">
+
+  <div class="card text-bg-light mb-3 " *ngIf="accion !=0">
+    <div class="card-header text-center">
+      <h3 class="text-danger">{{title}}</h3>
+    </div>
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col-12">
+          <form [formGroup]="myForm">
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="">TAREA</label>
+                  <input formControlName="titulo" type="text" class="form-control"
+                    placeholder="Ingrese el nombre de la tarea">
+                    <div *ngIf="myForm.controls['titulo'].errors && myForm.controls['titulo'].touched">
+                      <small class="text-danger" *ngIf="myForm.controls['titulo'].errors['required']">
+                        * Este campo es requerido
+                      </small>
+
+                    </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <label for="">DESCRIPCION</label>
+                <input formControlName="descripcion" type="text" class="form-control"
+                  placeholder="Ingrese la descripción de la tarea">
+                  <div *ngIf="myForm.controls['descripcion'].errors && myForm.controls['descripcion'].touched">
+                    <small class="text-danger" *ngIf="myForm.controls['descripcion'].errors['required']">
+                      * Este campo es requerido
+                    </small>
+                  </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="">ESTADO</label>
+                  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                    formControlName="estado">
+                    <option selected>PENDIENTE</option>
+                    <option>EN PROCESO</option>
+                    <option>FINALIZADO</option>
+                  </select>
+                  <div *ngIf="myForm.controls['estado'].errors && myForm.controls['estado'].touched">
+                    <small class="text-danger" *ngIf="myForm.controls['estado'].errors['required']">
+                      * Este campo es requerido
+                    </small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <button [disabled]="myForm.invalid" (click)="guardar()" class="btn btn-sn btn-primary mt-4 ml-2 mr-2">
+                  <i class="fa fa-check-square"> Guardar</i>
+                </button>
+                <button (click)="Cancelar()" class="btn btn-sn btn-danger mt-4 ml-2 mr-2">
+                  <i class="fa fa-ban"> Cancelar</i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card text-bg-light mb-3 ">
+    <div class="card-header text-center">
+      <h3 class="text-danger">LISTADO DE TAREAS</h3>
+    </div>
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col-12">
+
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>TAREA</th>
+                <th>DESCRIPCION</th>
+                <th>ESTADO</th>
+                <th>
+                  <button (click)="Nuevo()" class="btn btn-sm btn-success">
+                    <i class="fas fa-plus"></i> Agregar
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let d of tareas">
+                <td>{{d.id}}</td>
+                <td>{{d.titulo}}</td>
+                <td>{{d.descripcion}}</td>
+                <td>{{d.estado}}</td>
+                <td>
+                  <button (click)="Editar(d)" class="mr-2 ml-2 btn btn-sm btn-primary">
+                    <i class="fas fa-edit"></i> Editar
+                  </button>
+                  <button (click)="Eliminar(d.id)" class="ml-2 mr-2 btn btn-sm btn-danger ">
+                    <i class="fas fa-trash"></i> Eliminar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
