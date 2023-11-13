@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\BackEndTareas2.props" />
+</Project>

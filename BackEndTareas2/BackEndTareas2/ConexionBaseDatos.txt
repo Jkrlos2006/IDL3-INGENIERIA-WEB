@@ -1,0 +1,15 @@
+﻿
+INSTALAR LIBRERÍAS
+
+Microsoft.EntityFrameworkCore
+Microsoft.EntityFrameworkCore.Abstractions
+Microsoft.EntityFrameworkCore.Design
+Microsoft.EntityFrameworkCore.Relational
+Microsoft.EntityFrameworkCore.Tools
+
+Conexion:
+Scaffold-DbContext "Data Source=laptop-dbgbami9;Initial Catalog=DBTarea;Integrated Security=True;
+Trusted_Connection=true;Trust Server Certificate=true" Microsoft.EntityFrameworkCore.SqlServer -OutPutDir Models/DB -Force
+
+
+
